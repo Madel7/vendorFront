@@ -8,7 +8,8 @@ const client = axios.create({ baseURL: `${BASE}/api` })
 client.interceptors.request.use(cfg => {
   const token = localStorage.getItem('token')
   if (token) cfg.headers.Authorization = `Bearer ${token}`
-  console.log("[v0] API Request:", { url: cfg.url, method: cfg.method })
+  const fullUrl = `${cfg.baseURL || ''}${cfg.url}`
+  console.log("[v0] API Request:", { fullUrl, method: cfg.method, baseURL: cfg.baseURL, path: cfg.url })
   return cfg
 })
 
