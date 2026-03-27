@@ -22,6 +22,9 @@ export default function LoginPage() {
       login(data.token, data.user)
       navigate('/')
     } catch (err) {
+      console.log("[v0] Auth error:", err)
+      console.log("[v0] Error response:", err.response)
+      console.log("[v0] Error message:", err.message)
       setError(err.response?.data?.error || 'Something went wrong')
     } finally { setLoading(false) }
   }
